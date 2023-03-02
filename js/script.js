@@ -1,14 +1,25 @@
 // loading all Data
-const loadAllData = async () =>{
+const loadAllData = async (dataLimit) =>{
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     const res = await fetch(url);
     const data = await res.json();
-    displayAllData(data.data.tools);
+    displayAllData(data.data.tools, dataLimit);
 }
 
 // display all Data
-const displayAllData = (data) => {
+const displayAllData = (data, dataLimit) => {
     const cardsContainer = document.getElementById("cards-container");
+    cardsContainer.innerHTML = "";
+
+    // conditions
+    if(dataLimit && data.length > 6){
+        data = data.slice(0, 6);
+    }else if(data.length === data.length){
+        seeMore.classList.add("hidden");
+    }else{
+        seeMore.classList.remove("hidden");
+    }
+
     data.forEach(element => {
         const card = document.createElement("div");
         console.log(element)
@@ -22,7 +33,7 @@ const displayAllData = (data) => {
         });
 
         card.innerHTML = `
-            <div class="card bg-base-100 shadow-xl border p-6 rounded-xl">
+            <div class="card h-[660px] bg-base-100 shadow-xl border p-6 rounded-xl flex flex-col justify-between">
                 <figure>
                     <img src="${element.image}"alt="Shoes" class="rounded-xl"/>
                 </figure>
@@ -50,6 +61,11 @@ const displayAllData = (data) => {
     });
 }
 
-loadAllData()
+const seeMore = document.getElementById("see-more");
+seeMore.addEventListener("click", () => {
+    loadAllData();
+});
+
+loadAllData(6);
 
   
