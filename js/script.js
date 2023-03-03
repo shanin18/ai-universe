@@ -1,9 +1,13 @@
+// storing all the data to a global variable
+let fetchData = [];
+
 // loading all Data
 const loadAllData = async (dataLimit) =>{
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     const res = await fetch(url);
     const data = await res.json();
     displayAllData(data.data.tools, dataLimit);
+    fetchData = data.data.tools;
 }
 
 // display all Data
@@ -11,7 +15,7 @@ const displayAllData = (data, dataLimit) => {
     const cardsContainer = document.getElementById("cards-container");
     cardsContainer.innerHTML = "";
 
-    // conditions
+    // validations
     if(dataLimit && data.length > 6){
         data = data.slice(0, 6);
     }else if(data.length === data.length){
@@ -61,13 +65,25 @@ const displayAllData = (data, dataLimit) => {
     });
 }
 
-// see more button 
-const seeMore = document.getElementById("see-more");
+// Button click event listener to show all the cards 
+const seeMore = document.getElementById("see-more")
 seeMore.addEventListener("click", () => {
     loadAllData();
 });
 
-// load details
+
+// Function to sort the data by date
+const sortByDate = () => {  
+    fetchData.sort((a,b)=> new Date(a.published_in) - new Date(b.published_in))
+    displayAllData(fetchData);
+};
+
+  
+// Button click event listener to sort by date
+document.getElementById("sort-by-date").addEventListener("click", sortByDate);
+
+
+//Function to load details
 const loadDetail = async (id) =>{
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
     const res = await fetch(url);
@@ -75,7 +91,7 @@ const loadDetail = async (id) =>{
     displayDetail(data.data)
 }
 
-// display the detail
+//Function to display the detail
 const displayDetail = (data) =>{
     document.getElementById("card-description").innerText = `${data.description}`;
 
@@ -115,9 +131,10 @@ const displayDetail = (data) =>{
         integrationsContainer.appendChild(p);
     });
 
+    // modal card-right
     const cardsContainer = document.getElementById("card-container");
     cardsContainer.innerHTML = `
-    <img class="rounded-xl" src= "${data.image_link[0]}"/>
+    <img class="rounded-xl" src= "${data.image_link.forEach(item => item)}"/>
     <h2></h2>
     <p></p>
     `
@@ -125,7 +142,7 @@ const displayDetail = (data) =>{
     // accuracy
     const accuracy = document.getElementById("accuracy");
     accuracy.innerHTML = `
-    <p class="font-semibold text-white bg-[#EB5757] px-4 py-2 rounded-xl"><span>${data.accuracy.score}</span>% Accuracy</p>
+    <p class="font-semibold text-white bg-[#EB5757] px-4 py-1 rounded-lg"><span>${data.accuracy.score ? data.accuracy.score : "0"}%</span> accuracy</p>
     `
     console.log(data)
 }
