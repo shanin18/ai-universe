@@ -93,16 +93,19 @@ const loadDetail = async (id) =>{
 
 //Function to display the detail
 const displayDetail = (data) =>{
+
+    // description 
     document.getElementById("card-description").innerText = `${data.description}`;
+    
+    // packages
+    const packageContainer = document.getElementById("package-container");
+    packageContainer.innerHTML = `
+    <p class="text-center bg-white flex items-center justify-center rounded-xl text-[#03A30A] p-4 h-24 w-32">${data.pricing === null || data.pricing[0].price === "0" ? "Free of Cost" : data.pricing[0].price} <br> ${data.pricing === null ? "" : data.pricing[0].plan}</p>
+    <p class="text-center bg-white flex items-center justify-center rounded-xl text-[#F28927] p-4 h-24 w-32">${data.pricing === null || data.pricing[1].price === "0" ? "Free of Cost" : data.pricing[1].price} <br> ${data.pricing === null ? "" : data.pricing[1].plan}</p>
+    <p class="text-center bg-white flex items-center justify-center rounded-xl text-[#EB5757] p-4 h-24 w-32">${data.pricing === null || data.pricing[2].price === "0" ? "Free of Cost" : data.pricing[2].price} <br> ${data.pricing === null ? "" : data.pricing[2].plan}</p>
+    `;
 
-    const packageContainer =document.getElementById("package-container");
-
-    // packageContainer.innerHTML = `
-    //     <p class="text-center p-4 bg-white rounded-2xl text-[#03A30A] flex items-center justify-center">${data.pricing[0].price ? data.pricing[0].price : "Free of Cost"} <br> ${data.pricing[0].plan ? data.pricing[0].plan : "No Package"}</p>
-    //     <p class="text-center p-4 bg-white rounded-2xl text-[#F28927] flex items-center justify-center">${data.pricing[1].price ? data.pricing[1].price : "Free of Cost"} <br> ${data.pricing[1].plan ? data.pricing[1].plan : "No Package"}</p>
-    //     <p class="text-center p-4 bg-white rounded-2xl text-[#EB5757] flex items-center justify-center">${data.pricing[2].price ? data.pricing[2].price : "Free of Cost"} <br> ${data.pricing[2].plan ? data.pricing[2].plan : "No Package"}</p>
-    // `
-
+    // features
     const featuresContainer = document.getElementById("features-container");
     const ul = document.createElement("ol"); 
     ul.classList.add("ml-5")
@@ -117,34 +120,36 @@ const displayDetail = (data) =>{
     <div class="features">
         <h2 class="text-3xl font-semibold mb-4 ">Features</h2>
     </div>
-    `
+    `;
     const features = featuresContainer.querySelector(".features");
     features.appendChild(ul); 
     
-    // integration
+
+    // integrations
     const integrationsContainer = document.getElementById("integrations-container");
     integrationsContainer.innerHTML = "";
+
+    data.integrations === null ?
+    integrationsContainer.innerHTML = `<p class="text-[#585858]","mb-2">No data Found</p>` :
     data.integrations.forEach(integration => {
         const p = document.createElement("p");
-        p.classList.add("mb-2")
-        p.innerText = integration? integration : "No data Found";
+        p.classList.add("text-[#585858]","mb-2")
+        p.innerText = integration;
         integrationsContainer.appendChild(p);
     });
 
-    // modal card-right
-    const cardsContainer = document.getElementById("card-container");
-    cardsContainer.innerHTML = `
-    <img class="rounded-xl" src= "${data.image_link.forEach(item => item)}"/>
-    <h2></h2>
-    <p></p>
-    `
-
+    // modal right side
+    const cardContainer = document.getElementById("card-container");
+    cardContainer.innerHTML = `
+    <img class="rounded-xl" src= "${data.image_link[0]}"/>
+    <h2 class="text-2xl font-bold mt-6">${data.input_output_examples === null ? "No! Not yet! Take a break!!!" : data.input_output_examples[0].input}</h2>
+    <p class="text-[#585858] text-lg mt-4">${data.input_output_examples === null ? "" :  data.input_output_examples[0].output}</p>
+    `;
+    
     // accuracy
     const accuracy = document.getElementById("accuracy");
-    accuracy.innerHTML = `
-    <p class="font-semibold text-white bg-[#EB5757] px-4 py-1 rounded-lg"><span>${data.accuracy.score ? data.accuracy.score : "0"}%</span> accuracy</p>
-    `
-    console.log(data)
+    const accuracyScore = document.getElementById("accuracy-score");
+    accuracyScore.innerHTML = `${data.accuracy.score === null ? accuracy.classList.add("hidden") : data.accuracy.score * 100}% `;
 }
 
 loadAllData(6);

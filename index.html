@@ -30,20 +30,26 @@
             <div class="text-center">
                 <button id="see-more" class="text-white bg-[#EB5757] py-5 px-10 font-semibold text-lg rounded-xl">See More</button>
             </div>
-
         </section>
 
+        <!-- modal -->
         <section>
             <input type="checkbox" id="my-modal-3" class="modal-toggle" />
             <div class="modal">
                 <div class="modal-box w-11/12 max-w-5xl relative grid md:grid-cols-2 gap-5">
-                    <label for="my-modal-3" class="btn btn-sm bg-[#EB5757] border-none btn-circle absolute right-2 top-2">✕</label>
+                    <label for="my-modal-3" class="btn btn-sm bg-[#EB5757] border-none btn-circle absolute right-2 top-2 z-50">✕</label>
+
+                    <!-- modal_left_side -->
                     <div class="bg-[#FEF7F7] border border-[#EB5757] p-6 rounded-2xl">
                         <p id="card-description" class="text-xl font-semibold"></p>
-                        <div id="package-container" class="text-md font-bold grid grid-cols-3 gap-4 ">
+
+                        <!-- package -->
+                        <div id="package-container" class="text-md font-bold flex flex-wrap gap-5 my-6">
                             <!-- dynamic data -->
                         </div>
-                        <div class="flex flex-wrap justify-between gap-4 mt-6">
+
+                        <!-- features -->
+                        <div class="flex flex-wrap justify-between gap-3 mt-6">
                             <div id="features-container">  
                             </div>                         
                             <div>
@@ -52,19 +58,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="border p-6 rounded-2xl relative">
-                        <div id ="card-container">
 
+                    <!-- modal_right_side -->
+                    <div class="border p-6 rounded-2xl relative">
+
+                        <div id ="card-container" class="text-center">
+                            <!-- dynamic cards -->
                         </div>
 
-                        <div id="accuracy" class="absolute top-8 right-8">
-                            
+                        <!-- accuracy -->
+                        <div class="absolute top-8 right-8">
+                            <p id="accuracy" class="font-semibold text-white bg-[#EB5757] px-4 py-1 rounded-lg"><span id="accuracy-score"></span>accuracy</p>
                         </div>
                     </div>
                 </div>
             </div>
-
-            
         </section>
     </main>
 
