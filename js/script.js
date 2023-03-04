@@ -15,13 +15,12 @@ const displayAllData = (data, dataLimit) => {
     const cardsContainer = document.getElementById("cards-container");
     cardsContainer.innerHTML = "";
 
-    // validations
+    // cards & show_more button visibility validations
     if(dataLimit && data.length > 6){
         data = data.slice(0, 6);
-    }else if(data.length === data.length){
-        seeMore.classList.add("hidden");
-    }else{
         seeMore.classList.remove("hidden");
+    }else{
+        seeMore.classList.add("hidden");
     }
 
     data.forEach(element => {
@@ -52,7 +51,7 @@ const displayAllData = (data, dataLimit) => {
                         </div>
                        
                         <div>
-                        <label onclick="loadDetail('${element.id}')" for="my-modal-3"><i class="fa-solid fa-arrow-right text-[#EB5757] bg-[#FEF7F7] p-4 rounded-full"></i></label>
+                        <label onclick="loadDetail('${element.id}')" for="my-modal-3"><i class="fa-solid fa-arrow-right text-[#EB5757] bg-[#FEF7F7] p-4 rounded-full hover:cursor-pointer hover:bg-[#EB5757] hover:text-white duration-300"></i></label>
                         </div>
                     </div>
                 </div>
@@ -78,9 +77,10 @@ const sortByDate = () => {
     displayAllData(fetchData);
 };
 
-  
+
 // Button click event listener to sort by date
 document.getElementById("sort-by-date").addEventListener("click", sortByDate);
+
 
 
 //Function to load details
@@ -100,9 +100,9 @@ const displayDetail = (data) =>{
     // packages
     const packageContainer = document.getElementById("package-container");
     packageContainer.innerHTML = `
-    <p class="text-center bg-white flex items-center justify-center rounded-xl text-[#03A30A] p-4 h-24 w-32">${data.pricing === null || data.pricing[0].price === "0" ? "Free of Cost" : data.pricing[0].price} <br> ${data.pricing === null ? "" : data.pricing[0].plan}</p>
-    <p class="text-center bg-white flex items-center justify-center rounded-xl text-[#F28927] p-4 h-24 w-32">${data.pricing === null || data.pricing[1].price === "0" ? "Free of Cost" : data.pricing[1].price} <br> ${data.pricing === null ? "" : data.pricing[1].plan}</p>
-    <p class="text-center bg-white flex items-center justify-center rounded-xl text-[#EB5757] p-4 h-24 w-32">${data.pricing === null || data.pricing[2].price === "0" ? "Free of Cost" : data.pricing[2].price} <br> ${data.pricing === null ? "" : data.pricing[2].plan}</p>
+    <p class="text-center bg-white flex items-center justify-center rounded-xl text-[#03A30A] p-4 h-24 w-32">${data.pricing === null ? "Free of Cost" : data.pricing[0].price} <br> ${data.pricing === null ? "" : data.pricing[0].plan}</p>
+    <p class="text-center bg-white flex items-center justify-center rounded-xl text-[#F28927] p-4 h-24 w-32">${data.pricing === null ? "Free of Cost" : data.pricing[1].price} <br> ${data.pricing === null ? "" : data.pricing[1].plan}</p>
+    <p class="text-center bg-white flex items-center justify-center rounded-xl text-[#EB5757] p-4 h-24 w-32">${data.pricing === null ? "Free of Cost" : data.pricing[2].price} <br> ${data.pricing === null ? "" : data.pricing[2].plan}</p>
     `;
 
     // features
@@ -115,10 +115,10 @@ const displayDetail = (data) =>{
         li.innerText = `${data.features[i].feature_name}`;
         ul.appendChild(li);
     }
- 
+    
     featuresContainer.innerHTML = `
     <div class="features">
-        <h2 class="text-3xl font-semibold mb-4 ">Features</h2>
+    <h2 class="text-2xl md:text-3xl font-semibold mb-4 ">Features</h2>
     </div>
     `;
     const features = featuresContainer.querySelector(".features");
@@ -128,7 +128,7 @@ const displayDetail = (data) =>{
     // integrations
     const integrationsContainer = document.getElementById("integrations-container");
     integrationsContainer.innerHTML = "";
-
+    
     data.integrations === null ?
     integrationsContainer.innerHTML = `<p class="text-[#585858]","mb-2">No data Found</p>` :
     data.integrations.forEach(integration => {
@@ -137,7 +137,7 @@ const displayDetail = (data) =>{
         p.innerText = integration;
         integrationsContainer.appendChild(p);
     });
-
+    
     // modal right side
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = `
@@ -149,8 +149,15 @@ const displayDetail = (data) =>{
     // accuracy
     const accuracy = document.getElementById("accuracy");
     const accuracyScore = document.getElementById("accuracy-score");
-    accuracyScore.innerHTML = `${data.accuracy.score === null ? accuracy.classList.add("hidden") : data.accuracy.score * 100}% `;
-}
+ 
+};
+
+// spinner
+window.addEventListener("load", ()=>{
+    spinner.classList.add("hidden");
+});
+
+
 
 loadAllData(6);
 

@@ -19,7 +19,7 @@
             <!-- section header -->
             <div class="text-center">
                 <h1 class="text-4xl font-bold mb-8">AI Universe Hub</h1>
-                <button id="sort-by-date" class="text-white bg-[#EB5757] py-5 px-7 font-semibold text-lg rounded-xl ">Sort By Date</button>
+                <button id="sort-by-date" class="text-white bg-[#EB5757] hover:bg-[#d44a4a] py-5 px-7 font-semibold text-lg rounded-xl">Sort By Date</button>
             </div>
 
             <div id="cards-container" class="my-12 grid md:grid-cols-2 lg:grid-cols-3 gap-5 mx-2">
@@ -28,7 +28,7 @@
 
             <!-- see more button -->
             <div class="text-center">
-                <button id="see-more" class="text-white bg-[#EB5757] py-5 px-10 font-semibold text-lg rounded-xl">See More</button>
+                <button id="see-more" class="text-white bg-[#EB5757] hover:bg-[#d44a4a] py-4 px-10 font-semibold text-lg rounded-xl hidden">See More</button>
             </div>
         </section>
 
@@ -36,7 +36,7 @@
         <section>
             <input type="checkbox" id="my-modal-3" class="modal-toggle" />
             <div class="modal">
-                <div class="modal-box w-11/12 max-w-5xl relative grid md:grid-cols-2 gap-5">
+                <div class="modal-box w-11/12 max-w-5xl relative grid grid-flow-dense md:grid-cols-2 gap-5">
                     <label for="my-modal-3" class="btn btn-sm bg-[#EB5757] border-none btn-circle absolute right-2 top-2 z-50">✕</label>
 
                     <!-- modal_left_side -->
@@ -44,7 +44,7 @@
                         <p id="card-description" class="text-xl font-semibold"></p>
 
                         <!-- package -->
-                        <div id="package-container" class="text-md font-bold flex flex-wrap gap-5 my-6">
+                        <div id="package-container" class="text-md font-bold flex flex-wrap justify-center gap-5 my-6">
                             <!-- dynamic data -->
                         </div>
 
@@ -53,7 +53,7 @@
                             <div id="features-container">  
                             </div>                         
                             <div>
-                                <h2 class="text-3xl font-semibold mb-4 ">Integrations</h2>
+                                <h2 class="text-2xl md:text-3xl font-semibold mb-4 ">Integrations</h2>
                                 <div id="integrations-container"></div>
                             </div>
                         </div>
@@ -73,6 +73,11 @@
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- spinner -->
+        <section class="flex items-center justify-center mt-64">
+            <img id="spinner" class="w-16" src="images/spinner.gif" alt="loader gif">
         </section>
     </main>
 
