@@ -149,7 +149,10 @@ const displayDetail = (data) =>{
     // accuracy
     const accuracy = document.getElementById("accuracy");
     const accuracyScore = document.getElementById("accuracy-score");
- 
+    data.accuracy.score === null ? 
+    accuracy.classList.add("hidden") : 
+    accuracy.classList.remove("hidden"); 
+    accuracyScore.innerText = `${data.accuracy.score * 100}% `;
 };
 
 // spinner
