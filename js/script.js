@@ -35,18 +35,18 @@ const displayAllData = (data, dataLimit) => {
         });
 
         card.innerHTML = `
-            <div class="card h-[660px] bg-base-100 shadow-xl border p-6 rounded-xl">
+            <div class="card md:h-[580px] xl:h-[660px] bg-base-100 shadow-xl border p-6 rounded-xl">
                 <figure>
                     <img src="${element.image}"alt="Shoes" class="rounded-xl"/>
                 </figure>
-                <div class="card-body p-0">
+                <div class="card-body justify-end p-0">
                     <div class="features my-6">
                         <h2 class="text-2xl font-semibold  mb-4">Features</h2>
                     </div>
 
                     <div class="py-6 border-t-2 flex items-center justify-between">
                         <div>
-                            <h2 class="text-3xl font-semibold mb-4 ">${element.name}</h2>
+                            <h2 class="text-2xl md:text-3xl font-semibold mb-4">${element.name}</h2>
                             <p><i class="fa-regular fa-calendar-days mr-2 text-[#585858]"></i>${element.published_in}</p>
                         </div>
                        
@@ -142,8 +142,8 @@ const displayDetail = (data) =>{
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = `
     <img class="rounded-xl" src= "${data.image_link[0]}"/>
-    <h2 class="text-2xl font-bold mt-6">${data.input_output_examples === null ? "No! Not yet! Take a break!!!" : data.input_output_examples[0].input}</h2>
-    <p class="text-[#585858] text-lg mt-4">${data.input_output_examples === null ? "" :  data.input_output_examples[0].output}</p>
+    <h2 class="text-2xl font-bold mt-6">${data.input_output_examples === null ? "No! Not yet! Take a break!!!" : data.input_output_examples[1].input}</h2>
+    <p class="text-[#585858] text-lg mt-4">${data.input_output_examples === null ? "" :  data.input_output_examples[1].output}</p>
     `;
     
     // accuracy
@@ -159,7 +159,6 @@ const displayDetail = (data) =>{
 window.addEventListener("load", ()=>{
     spinner.classList.add("hidden");
 });
-
 
 
 loadAllData(6);

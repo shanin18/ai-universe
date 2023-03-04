@@ -40,16 +40,16 @@
                     <label for="my-modal-3" class="btn btn-sm bg-[#EB5757] border-none btn-circle absolute right-2 top-2 z-50">✕</label>
 
                     <!-- modal_left_side -->
-                    <div class="bg-[#FEF7F7] border border-[#EB5757] p-6 rounded-2xl">
-                        <p id="card-description" class="text-xl font-semibold"></p>
+                    <div class="bg-[#FEF7F7] border border-[#EB5757] rounded-2xl">
+                        <p id="card-description" class="text-xl font-semibold p-4 md:p-6"></p>
 
                         <!-- package -->
                         <div id="package-container" class="text-md font-bold flex flex-wrap justify-center gap-5 my-6">
                             <!-- dynamic data -->
                         </div>
 
-                        <!-- features -->
-                        <div class="flex flex-wrap justify-between gap-3 mt-6">
+                        <!-- features & integration -->
+                        <div class="flex flex-wrap justify-between gap-3 mt-6 p-4 md:p-6">
                             <div id="features-container">  
                             </div>                         
                             <div>
@@ -60,14 +60,14 @@
                     </div>
 
                     <!-- modal_right_side -->
-                    <div class="border p-6 rounded-2xl relative">
+                    <div class="border p-3 md:p-6 rounded-2xl relative">
 
                         <div id ="card-container" class="text-center">
                             <!-- dynamic cards -->
                         </div>
 
                         <!-- accuracy -->
-                        <div class="absolute top-8 right-8">
+                        <div class="absolute top-5 md:top-8 right-5 md:right-8">
                             <p id="accuracy" class="font-semibold text-white bg-[#EB5757] px-4 py-1 rounded-lg"><span id="accuracy-score"></span>accuracy</p>
                         </div>
                     </div>
@@ -76,8 +76,8 @@
         </section>
 
         <!-- spinner -->
-        <section class="flex items-center justify-center mt-64">
-            <img id="spinner" class="w-16" src="images/spinner.gif" alt="loader gif">
+        <section  id="spinner" class="flex items-center justify-center mt-40">
+            <img class="w-16" src="images/spinner.gif" alt="loader gif">
         </section>
     </main>
 
